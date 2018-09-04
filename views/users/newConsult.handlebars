@@ -1,0 +1,243 @@
+<section class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="box box-primary">
+        <div class="box-body">
+          <div id="step_1" class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Nueva Consulta</h5>
+              <div class="ibox-tools">
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+              </div>
+            </div>
+            <div class="ibox-content">
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                      <div class="panel-body">
+                        <div class="col-sm-12 b-r">
+                          <form role="form" id="newConsult">
+                            <h2>Paciente</h2>
+                            <div class="row">
+                              <div class="col-md-8 form-group">
+                              <select placeholder="Paciente" class="form-control" name="paciente" id="select_paciente">
+                                  <option value="">Opcional</option>
+                                  {{#each pacientes}}
+                                    <option value="{{paciente._id}}">{{paciente.nombres}}</option>
+                                  {{/each}}
+                                </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-8 form-group">
+                                <label>Motivo De Consulta</label>
+                                <input id="inp_motiConsu" type="text" placeholder="Motivo de la Consulta" class="form-control" name="motivoConsulta">
+                              </div>
+                             </div>
+                             <h3>Observaciones y Examenes Clinicos</h3>
+                             <div class="row">
+                              <div class="col-md-8 form-group">
+                                <label>Aspecto general del examinado</label>
+                                <input id="inp_children" type="text" placeholder="Aspecto General" class="form-control" name="aspectoGeneral">
+                              </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-8 form-group">
+                                <label>Actitud hacia el examinador y proceso de entrevista</label>
+                                <input id="inp_brother" type="text" placeholder="Actitud hacia el examinador" class="form-control" name="actitudHaciaExaminador">
+                              </div>
+                              </div>
+                              <h4>Examen de los Procesos Cognitivos</h4>
+                              <div class="row">
+                                <div class="col-md-4 form-group">
+                                  <label>Conciencia y Orientacion: </label>
+                                  <input id="inp_conc" type="text" placeholder="Conciencia y Orientacion" class="form-control" name="concYOrientac">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                <label>Percepción: </label>
+                                <input id="inp_phone" type="text" placeholder="Percepción" class="form-control" name="percepcion">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Atención: </label>
+                                <input id="inp_phone" type="text" placeholder="Atención" class="form-control" name="atencion">
+                              </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 form-group">
+                                  <label>Memoria: </label>
+                                  <input id="inp_phone" type="text" placeholder="Memoria" class="form-control" name="memoria">
+                                </div>
+                                <div class="col-md-4 form-group">
+                                <label>Pensamiento: </label>
+                                <input id="inp_phone" type="text" placeholder="Pensamiento" class="form-control" name="pensamiento">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Lenguaje: </label>
+                                <input id="inp_phone" type="text" placeholder="Lenguaje" class="form-control" name="lenguaje">
+                              </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-4 form-group">
+                                  <label>Inteligencia Emocional: </label>
+                                  <input id="inp_phone" type="text" placeholder="Inteligencia Emocional" class="form-control" name="inteligEmocional">
+                                </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-8 form-group">
+                                <label>Explotación de la Esfera Afectiva</label>
+                                <input id="inp_brother" type="text" placeholder="Explotación de la Esfera Afectiva" class="form-control" name="exploEsferAfect" >
+                              </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-8 form-group">
+                                <label>Observaciones</label>
+                                <input id="inp_brother" type="text" placeholder="Observaciones" class="form-control" name="observaciones">
+                              </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Dinamica Familiar</label>
+                                <input id="inp_brother" type="text" placeholder="Dinamica Familiar" class="form-control" name="dinamicaFamiliar">
+                              </div>
+                              </div>
+                              <h2>Pruebas Aplicadas</h2>
+                              <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Tipo de prueba</label>
+                                <input id="inp_brother" type="text" placeholder="Tipo de prueba" class="form-control" name="tipoPrueba">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Resultado</label>
+                                <input id="inp_brother" type="text" placeholder="Resultado" class="form-control" name="resultadoPrueba">
+                              </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Tipo de prueba</label>
+                                <input id="inp_brother" type="text" placeholder="Tipo de prueba" class="form-control" name="tipoPrueba">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Resultado</label>
+                                <input id="inp_brother" type="text" placeholder="Resultado" class="form-control" name="resultadoPrueba">
+                              </div>
+                              </div>
+                              <h2>Resumen del diagnostico</h2>
+                              <div class="row">
+                              <div class="col-md-10 form-group">
+                                <label>Diagnostico</label>
+                                <input id="inp_brother" type="text" placeholder="Diagnostico" class="form-control" name="resumen">
+                              </div>
+                              </div>
+                              <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Pronostico</label>
+                                <select  placeholder="Pronostico" class="form-control" name="pronostico" id="select_pronostico">
+                                  <option value="favorable">Favorable</option>
+                                  <option value="desfavorable">Desfavorable</option>
+                                  <option value="reservado">Reservado</option>
+                                </select>
+                              </div>
+                              </div>
+                              <div class= "row">
+                                 <div class="col-md-8 form-group">
+                                 <label>Tratamiento Psicoterapeutico</label>
+                                 <input id="inp_brother" type="text" placeholder="Tratamiento Psicoterapeutico" class="form-control" name="tratamientoPsico">
+                                 </div>
+                              </div>
+                              <div class= "row">
+                                 <div class="col-md-6 form-group">
+                                 <label>Labor Realizada</label>
+                                 <input id="inp_brother" type="text" placeholder="Labor Realizada" class="form-control" name="laborRealiz">
+                                 </div>
+                                 <div class="col-md-6 form-group">
+                                 <label>Logros Alcanzados</label>
+                                 <input id="inp_brother" type="text" placeholder="Logros Alcanzados" class="form-control" name="logrosAlcan">
+                                 </div>
+                              </div>
+                          </form>
+                          <div class="pull-right m-r">
+                            <button id="btn_end" class="btn btn-primary" onclick="createConsult()">
+                            <strong>Confirmar</strong>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#data_1 .input-group.date').datepicker({
+        todayBtn: "linked",
+        startView: 2,
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+    $('#data_2 .input-group.date').datepicker({
+        todayBtn: "linked",
+        startView: 2,
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+  });
+ /* let validator = $("#newConsult").validate({
+    rules: {
+      dni: {
+       required: true,
+       minlength: 8,
+       maxlength: 8
+      },
+      nombres: {
+       required: true
+      },
+      apellidos: {
+       required: true
+      },
+      phone: {
+       required: true,
+       number: true
+      }
+    },
+    messages: {
+      dni: {
+       required: "Ingrese dni",
+       minlength: "Ingrese un dni válido",
+       maxlength: "Ingrese un dni válido"
+      },
+      nombres: "Ingrese el nombre del alumno",
+      apellidos: "Ingrese el nombre del alumno",
+      phone: {
+       required: "Ingrese el número del alumno",
+       number: "Ingrese un número válido"
+      }
+    }
+  })
+  */
+  function createConsult(){
+    let data = $("#newConsult").serialize();
+    $.ajax({
+          type: 'POST',
+          url: '/newConsults',
+          data: data,
+          success: function (response) {
+            toastr.success("Consulta creada con éxito")
+          },
+          error: function (request, status, error) {
+            toastr.error("Error, no se pudo guardar la información")
+          }
+        })
+  }
+
+</script>

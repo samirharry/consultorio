@@ -1,0 +1,587 @@
+<section class="content">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="box box-primary">
+        <div class="box-body">
+          <div id="step_1" class="ibox float-e-margins">
+            <div class="ibox-title">
+              <h5>Nuevo Paciente</h5>
+              <div class="ibox-tools">
+                <a class="collapse-link">
+                  <i class="fa fa-chevron-up"></i>
+                </a>
+              </div>
+            </div>
+            <div class="ibox-content">
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane active">
+                      <div class="panel-body">
+                        <div class="col-sm-12 b-r">
+                          <form role="form" id="newPatientFormStep1">
+                            <h2>Datos Personales</h2>
+                            <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Nombres</label>
+                                <input id="inp_name" type="text" placeholder="Nombres" class="form-control" name="nombres">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Apellidos</label>
+                                <input id="inp_last" type="text" placeholder="Apellidos" class="form-control" name="apellidos">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>DNI</label>
+                                <input id="inp_dni" type="number" placeholder="DNI" class="form-control" name="dni">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Genero</label>
+                                <select id="select_gen" class="form-control" name="genero">
+                                  <option value="masculino">Masculino</option>
+                                  <option value="femenino">Femenino</option>
+                                  <option value="otros">Otros</option>
+                                </select>
+                              </div>
+                              <div class="col-md-4 form-group" id="data_1">
+                                <label>Fecha de Nacimiento</label>
+                                <div class="input-group date">
+                                  <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                  <input id="inp_birthdate" type="text" placeholder="Fecha de Nacimiento" class="form-control" name="fechaDeNacimiento" onchange="configEdad()">
+                                </div>
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Edad</label>
+                                <input id="inp_age" type="number" placeholder="Edad" class="form-control" name="edad">
+                              </div>
+                            </div>
+                            <h3>Lugar de Nacimiento</h3>
+                            <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Departamento</label>
+                                <select placeholder="Departamento" class="form-control" name="department" onchange="loadProvinces()" id="select_department">
+                                  {{#each departments}}
+                                    <option value="{{this}}">{{this}}</option>
+                                  {{/each}}
+                                </select>
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Provincia</label>
+                                <select placeholder="Provincia" class="form-control" onchange="loadDistricts()" name="province"  id="select_province">
+                                </select>
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Distrito</label>
+                                <select placeholder="Distrito" class="form-control" id="select_district" name="district">
+                                </select>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-4 form-group">
+                                <label>Grado de Instruccion</label>
+                                <input id="inp_degree" type="text" placeholder="Grado de Instruccion" class="form-control" name="gradoDeInstrucion">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Ocupacion</label>
+                                <input id="inp_ocup" type="text" placeholder="Ocupacion" class="form-control" name="ocupacion">
+                              </div>
+                              <div class="col-md-4 form-group">
+                                <label>Campo Laboral</label>
+                                <input id="inp_labor" type="text" placeholder="Campo Laboral" class="form-control" name="campoLaboral">
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="col-md-3 form-group">
+                                <label>Estado Civil</label>
+                                <input id="inp_civSta" type="text" placeholder="Estado Civil" class="form-control" name="estadoCivil">
+                              </div>
+                              <div class="col-md-3 form-group">
+                                <label>N° de Hijos</label>
+                                <input id="inp_children" type="number" placeholder="N° de Hijos" class="form-control" name="cantHijos" onblur="loadChildrens()">
+                              </div>
+                              <div class="col-md-3 form-group">
+                                <label>N° de Hermanos</label>
+                                <input id="inp_brother" type="number" placeholder="N° de Hermanos" class="form-control" name="cantHermanos" onblur="loadBrothers()">
+                              </div>
+                              <div class="col-md-3 form-group">
+                                <label>Telefono</label>
+                                <input id="inp_phone" type="text" placeholder="Telefono" class="form-control" name="telefono">
+                              </div>
+                            </div>
+                          </form>
+                          <div class="pull-right m-r">
+                            <button class="btn btn-primary" type="submit" onclick="nextButton()">
+                              <strong>Siguiente</strong>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div id="step_2" class="ibox float-e-margins" style="display: none;">
+              <div class="ibox-title">
+                <h5>Datos Familiares</h5>
+                <div class="ibox-tools">
+                  <a class="collapse-link">
+                    <i class="fa fa-chevron-up"></i>
+                  </a>
+                </div>
+              </div>
+              <div class="ibox-content">
+                <form role="form" id="newPatientFormStep2">
+                <h2>Datos Personales</h2>
+                <h3>Pareja</h3>
+                <div class="row">
+                   <div class="col-md-4 form-group">
+                     <label>Apellidos y Nombres</label>
+                     <input id="inp_spouse" type="text" placeholder="Apeliidos y Nombres" class="form-control" name="nombrePareja">
+                   </div>
+                   <div class="col-md-4 form-group">
+                     <label>DNI</label>
+                       <input id="inp_DNISpouse" type="number" placeholder="DNI" class="form-control" name="dniPareja">
+                    </div>
+                   <div class="col-md-4 form-group">
+                     <label>Ocupación</label>
+                     <input id="inp_ocupSpouse" type="text" placeholder="Ocupación" class="form-control" name="ocupacionPareja">
+                   </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 form-group" id="data_2">
+                     <label>Fecha de Nacimiento</label>
+                     <div class="input-group date">
+                       <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                       <input id="inp_birthdateSpouse" type="text" placeholder="Fecha de Nacimiento" class="form-control" name="fechaDeNacimientoPareja" onchange="configEdadEsposa()">
+                     </div>
+                    </div>
+                   <div class="col-md-4 form-group">
+                     <label>Edad</label>
+                     <input id="inp_ageSpouse" type="number" placeholder="Edad" class="form-control" name="edadPareja">
+                   </div>
+                    
+                  </div>
+                  <h3>Lugar de Nacimiento</h3>
+                  <div class="row">
+                    <div class="col-md-4 form-group">
+                      <label>Departamento</label>
+                      <select placeholder="Departamento" class="form-control" onchange="loadProvincesSpouse()" id="select_depart_spouse">
+                        {{#each departments}}
+                          <option value="{{this}}">{{this}}</option>
+                        {{/each}}
+                      </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Provincia</label>
+                      <select placeholder="Provincia" class="form-control" onchange="loadDistrictsSpouse()" id="select_province_spouse">
+                      </select>
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Distrito</label>
+                      <select placeholder="Distrito" class="form-control" id="select_district_spouse">
+                      </select>
+                    </div>
+                  </div>
+                  
+                  <div id="children_data">
+                    <!-- Contenido Auto Cargado -->
+                  </div>
+                  <div class="row">
+                    <div class="col-md-4 form-group">
+                      <h3>Domicilio</h3>
+                      <input id="inp_domicilio" type="text" placeholder="Domicilio" class="form-control" name="domicilio">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <h3>Religión</h3>
+                      <input id="inp_religion" type="text" placeholder="Religion" class="form-control" name="religion">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <h3>Informante</h3>
+                      <input id="inp_informante" type="text" placeholder="Informante" class="form-control" name="informante">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group">
+                      <h3>DX Presuntivo</h3>
+                      <input id="inp_DXPresuntivo" type="textarea" placeholder="DX Presuntivo" class="form-control" name="dxPresuntivo">
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-8 form-group">
+                      <h3>DX Definitivo</h3>
+                      <input id="inp_DXDefinitivo" type="textarea" placeholder="DX Definitivo" class="form-control" name="dxDefinitivo">
+                    </div>
+                  </div>
+                  </form>
+                  <div class="row">
+                    <div class="col-md-3 pull-right m-b-xs">
+                      <button class="btn btn-primary" onclick="backButton()">
+                        <strong>Regresar</strong>
+                      </button>
+                      <button class="btn btn-primary" onclick="nextButton1()">
+                        <strong>Siguiente</strong>
+                      </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            <div id="step_3" class="ibox float-e-margins" style="display: none;">
+              <div class="ibox-content">
+                <form role="form" id="newPatientFormStep3">
+                            <h2>Datos Personales</h2>
+                  <h3>Padre</h3>
+                  <div class="row">
+                    <div class="col-md-4 form-group">
+                      <label>Apellidos y Nombres</label>
+                      <input placeholder="Apellidos Y Nombres" type="text" class="form-control" name="nombrePadre" id="inp_nameFather">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Edad</label>
+                      <input placeholder="Edad" class="form-control" type= "number" name="edadPadre" id="inp_ageFather">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Ocupacion</label>
+                      <input placeholder="Ocupacion" type="text" name="ocupacionPadre" class="form-control" id="inp_ocupFather">
+                    </div>
+                  </div>
+                  <h3>Madre</h3>
+                  <div class="row">
+                    <div class="col-md-4 form-group">
+                      <label>Apellidos y Nombres</label>
+                      <input placeholder="Apellidos Y Nombres" type="text" class="form-control" name="nombreMadre" id="inp_nameMother">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Edad</label>
+                      <input placeholder="Edad" class="form-control" type= "number" name="edadMadre" id="inp_ageMother">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Ocupacion</label>
+                      <input placeholder="Ocupacion" type="text" name="ocupacionMadre" class="form-control" id="inp_ocupMother">
+                    </div>
+                  </div>
+
+                <div id="brother_data">
+                  <!-- Contenido Auto Cargado -->
+                </div>
+                <h2>Historia Personal</h2>
+                <h3>Desarrollo Pre Y Post Natal</h3>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                      <label>Desarrollo Pre Natal</label>
+                      <input placeholder="Desarrollo pre natal" type="text" class="form-control" name="descPreNat" id="inp_descPreNat">
+                    </div>
+                    <div class="col-md-6 form-group">
+                      <label>Desarrollo Post Natal</label>
+                      <input placeholder="Desarrollo Post Natal" class="form-control" type= "text" name="descPostnatal" id="inp_descPostnatal">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 form-group">
+                      <label>Escolaridad</label>
+                      <input placeholder="Escolaridad" type="text" class="form-control" name="escolaridad" id="inp_escolaridad">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Hábitos é Intereses</label>
+                      <input placeholder="Hábitos é Intereses" class="form-control" type= "text" name="habitosEIntereses" id="inp_habitosEIntereses">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Desarrollo Psicosexual</label>
+                      <input placeholder="Desarrollo Psicosexual" class="form-control" type= "text" name="desarrPsicosexual" id="inp_desarrPsicosexual">
+                    </div>
+                    <div class="col-md-4 form-group">
+                      <label>Historia Médica</label>
+                      <input placeholder="Historia Médica" class="form-control" type= "text" name="historiaMedica" id="inp_historiaMedica">
+                    </div>
+                </div>
+                </form>
+                  <div class="row">
+                    <div class="col-md-3 pull-right m-b-xs">
+                      <button class="btn btn-primary" onclick="backButton1()">
+                        <strong>Regresar</strong>
+                      </button>
+                      <button id="btn_end" class="btn btn-primary" onclick="createPatient()">
+                        <strong>Confirmar</strong>
+                      </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#data_1 .input-group.date').datepicker({
+        todayBtn: "linked",
+        startView: 2,
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+    $('#data_2 .input-group.date').datepicker({
+        todayBtn: "linked",
+        startView: 2,
+        keyboardNavigation: false,
+        forceParse: false,
+        calendarWeeks: true,
+        autoclose: true
+    });
+    loadProvinces(),
+    loadBrothers(),
+    loadChildrens(),
+    configEdad(),
+     configEdadEsposa()
+  });
+  let validator = $("#newPatientFormStep1").validate({
+    rules: {
+      dni: {
+       required: true,
+       minlength: 8,
+       maxlength: 8
+      },
+      nombres: {
+       required: true
+      },
+      apellidos: {
+       required: true
+      },
+      phone: {
+       required: true,
+       number: true
+      }
+    },
+    messages: {
+      dni: {
+       required: "Ingrese dni",
+       minlength: "Ingrese un dni válido",
+       maxlength: "Ingrese un dni válido"
+      },
+      nombres: "Ingrese el nombre del paciente",
+      apellidos: "Ingrese el nombre del paciente",
+      phone: {
+       required: "Ingrese el número del paciente",
+       number: "Ingrese un número válido"
+      }
+    }
+  })
+  function configEdad(){
+    let nacimiento = new Date(document.getElementById('inp_birthdate').value);
+    let hoy = new Date();
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    let m = hoy.getMonth() - nacimiento.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
+    }
+    document.getElementById('inp_age').value = edad;
+  }
+  function configEdadEsposa(){
+    let nacimiento = new Date(document.getElementById('inp_birthdateSpouse').value);
+    let hoy = new Date();
+    let edad = hoy.getFullYear() - nacimiento.getFullYear();
+    let m = hoy.getMonth() - nacimiento.getMonth();
+
+    if (m < 0 || (m === 0 && hoy.getDate() < nacimiento.getDate())) {
+        edad--;
+    }
+    document.getElementById('inp_ageSpouse').value = edad;
+  }
+  function createPatient() {
+    if (validator.form()) {
+      let form = document.getElementById('newPatientFormStep1')
+      if (form.elements['dni'].value != "" && form.elements['nombres'].first_name != "" &&
+          form.elements['apellidos'].value != "" && form.elements['fechaDeNacimiento'].value != "") {
+        let ubigeo_code = "", ubigeo_department = "", ubigeo_province = "", ubigeo_district ="",ubigeo_code_spouse = "", ubigeo_department_spouse= "", ubigeo_province_spouse = "", ubigeo_district_spouse =""
+        if (document.getElementById('select_department').value != "") {
+          ubigeo_department = document.getElementById('select_department').value.split('|')[1]
+          ubigeo_province = document.getElementById('select_province').value.split('|')[1]
+          ubigeo_district = document.getElementById('select_district').value.split('|')[1]
+          if (parseInt(document.getElementById('select_department').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code += document.getElementById('select_department').value.split('|')[0]
+          if (parseInt(document.getElementById('select_province').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code += document.getElementById('select_province').value.split('|')[0]
+          if (parseInt(document.getElementById('select_district').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code += document.getElementById('select_district').value.split('|')[0]
+        }
+        if (document.getElementById('select_depart_spouse').value != "") {
+          ubigeo_department_spouse = document.getElementById('select_depart_spouse').value.split('|')[1]
+          ubigeo_province_spouse = document.getElementById('select_province_spouse').value.split('|')[1]
+          ubigeo_district_spouse = document.getElementById('select_district_spouse').value.split('|')[1]
+          if (parseInt(document.getElementById('select_depart_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code_spouse += document.getElementById('select_depart_spouse').value.split('|')[0]
+          if (parseInt(document.getElementById('select_province_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code_spouse += document.getElementById('select_province_spouse').value.split('|')[0]
+          if (parseInt(document.getElementById('select_district_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
+          ubigeo_code_spouse += document.getElementById('select_district_spouse').value.split('|')[0]
+        }
+        let str1 = $('#newPatientFormStep1').serialize();
+        let str2 = $('#newPatientFormStep2').serialize();
+        let str3 = $('#newPatientFormStep3').serialize();
+        $.ajax({
+          type: 'POST',
+          url: '/newPatients',
+          data: str1+'&'+str2+'&'+str3+'&ubi='+ubigeo_code+'&ubiSpouse='+ubigeo_code_spouse,
+          success: function (response) {
+            toastr.success("Paciente creado con éxito")
+          },
+          error: function (request, status, error) {
+            toastr.error("Error, no se pudo guardar la información")
+          }
+        })
+      } else {
+        toastr.error("Complete los campos")
+      }
+    }
+  }
+  function loadChildrens(){
+    let number_child = document.getElementById('inp_children').value
+    let children_data = document.getElementById('children_data');
+    for (let i = 0; i <= number_child; i++) {
+      if(i==0){
+        children_data.innerHTML = "";
+      }
+      else if(i == 1 ){
+        children_data.innerHTML += '<h3>Hijos</h3>'+'<div class="row"><div class="col-md-4 form-group"><label>Nombres Y Apellidos</label><input placeholder="Nombres y Apellidos" class="form-control" name="nombreHijos"/></div><div class="col-md-4 form-group"><label>Edad</label><input placeholder="Edad" class="form-control" name="edadHijos"/></div><div class="col-md-4 form-group"> <label>Ocupacion</label> <input placeholder="Ocupacion" class="form-control" name="ocupacionHijos"/> </div> </div>';
+      }
+      else {
+      children_data.innerHTML += '<div class="row"><div class="col-md-4 form-group"><label>Nombres Y Apellidos</label><input placeholder="Nombres y Apellidos" class="form-control" name="nombreHijos"/></div><div class="col-md-4 form-group"><label>Edad</label><input placeholder="Edad" class="form-control" name="edadHijos"/></div><div class="col-md-4 form-group"> <label>Ocupacion</label> <input placeholder="Ocupacion" class="form-control" name="ocupacionHijos"/> </div> </div>';
+      }
+    }
+  }
+  function loadBrothers(){
+    let number_brother = document.getElementById('inp_brother').value
+    let brother_data = document.getElementById('brother_data');
+    for (let i = 0; i <= number_brother; i++) {
+      if(i==0){
+        brother_data.innerHTML = "";
+      }
+      else if(i==1){
+      brother_data.innerHTML += '<h3>Hermanos</h3>'+'<div class="row"><div class="col-md-4 form-group"><label>Nombres Y Apellidos</label><input placeholder="Nombres y Apellidos" class="form-control" name="hermanos"/></div></div>';
+  
+      }
+      else{
+      brother_data.innerHTML += '<div class="row"><div class="col-md-4 form-group"><label>Nombres Y Apellidos</label><input placeholder="Nombres y Apellidos" class="form-control" name="hermanos"/></div></div>';
+      }
+    }
+  }
+  function loadProvinces() {
+    if (document.getElementById('select_department').value != "") {
+      $.ajax({
+  			type: 'get',
+  			url: "provinces/" + document.getElementById('select_department').value,
+  			success: function(result) {
+          let select_province = document.getElementById('select_province')
+          while (select_province.firstChild) {
+            select_province.removeChild(select_province.firstChild);
+          }
+          for (let i = 0; i < result.length; i++) {
+            select_province.innerHTML += '<option value="'+ result[i] +'">'+ result[i] +'</option>'
+          }
+          loadDistricts()
+  			},
+  			error: function(xhr, ajaxOptions, thrownError){
+          console.log(thrownError);
+  			}
+  		})
+    } else {
+      let select_province = document.getElementById('select_province')
+      while (select_province.firstChild) {
+        select_province.removeChild(select_province.firstChild);
+      }
+      let select_district = document.getElementById('select_district')
+      while (select_district.firstChild) {
+        select_district.removeChild(select_district.firstChild);
+      }
+    }
+  }
+
+  function loadDistricts() {
+    $.ajax({
+			type: 'get',
+			url: "districts/" + document.getElementById('select_province').value,
+			success: function(result) {
+        let select_district = document.getElementById('select_district')
+        while (select_district.firstChild) {
+          select_district.removeChild(select_district.firstChild);
+        }
+        for (let i = 0; i < result.length; i++) {
+          select_district.innerHTML += '<option value="'+ result[i] +'">'+ result[i] +'</option>'
+        }
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+        console.log(thrownError);
+			}
+		})
+  }
+  function loadProvincesSpouse() {
+    if (document.getElementById('select_depart_spouse').value != "") {
+      $.ajax({
+  			type: 'get',
+  			url: "provinces/" + document.getElementById('select_depart_spouse').value,
+  			success: function(result) {
+        let select_province = document.getElementById('select_province_spouse')
+          while (select_province.firstChild) {
+            select_province.removeChild(select_province.firstChild);
+          }
+          for (let i = 0; i < result.length; i++) {
+            select_province.innerHTML += '<option value="' + result[i] +'">'+ result[i] +'</option>'
+          }
+          loadDistrictsSpouse()
+  			},
+  			error: function(xhr, ajaxOptions, thrownError){
+          console.log(thrownError);
+  			}
+  		})
+    } else {
+      let select_province = document.getElementById('select_province_spouse')
+      while (select_province.firstChild) {
+        select_province.removeChild(select_province.firstChild);
+      }
+      let select_district = document.getElementById('select_district_spouse')
+      while (select_district.firstChild) {
+        select_district.removeChild(select_district.firstChild);
+      }
+    }
+  }
+
+  function loadDistrictsSpouse() {
+    $.ajax({
+			type: 'get',
+			url: "districts/" + document.getElementById('select_province_spouse').value,
+			success: function(result) {
+        let select_district = document.getElementById('select_district_spouse')
+        while (select_district.firstChild) {
+          select_district.removeChild(select_district.firstChild);
+        }
+        for (let i = 0; i < result.length; i++) {
+          select_district.innerHTML += '<option value="' + result[i] +'">'+ result[i] +'</option>'
+        }
+			},
+			error: function(xhr, ajaxOptions, thrownError){
+        console.log(thrownError);
+			}
+		})
+  }
+  function nextButton() {
+    document.getElementById('step_1').style.display = 'none'
+    document.getElementById('step_2').style.display = 'block'
+  }
+
+  function backButton() {
+    document.getElementById('step_1').style.display = 'block'
+    document.getElementById('step_2').style.display = 'none'
+  }
+  function nextButton1() {
+    document.getElementById('step_2').style.display = 'none'
+    document.getElementById('step_3').style.display = 'block'
+  }
+
+  function backButton1() {
+    document.getElementById('step_2').style.display = 'block'
+    document.getElementById('step_3').style.display = 'none'
+  }
+
+</script>

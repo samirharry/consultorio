@@ -1,0 +1,268 @@
+<section class="content">
+  <div class="box">
+    <div class="box-body">
+      <section class="content-header">
+        <h1>Cursos</h1>
+      </section>
+      <section class="content">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="ibox">
+              <div class="ibox-content float-e-margins table-responsive m-t">
+                <div class="table-responsive">
+                  <div id="DataTables_Table_0_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                    <table class="table table-striped table-bordered table-hover dataTables-example dataTable">
+                      <thead>
+                        <tr role="row">
+                          <th>#</th>
+                          <th>Fecha</th>
+                          <th>Motivo de la consulta</th>
+                          <th>Resumen</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {{#each consultas}}
+                          <tr>
+                            <td>{{sum @index 1}}</td>
+                              <td>{{formatDate consulta.fecha 'DD-MMM-YYYY'}}</td>
+                              <td>{{consulta.motivoConsulta}}</td>
+                              <td>{{consulta.resumen}}</td>
+                            </tr>
+                        {{/each}}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+
+<script type="text/javascript">
+  let events = [], cal, exceptions = []
+  $(document).ready(function(){
+    $('#newItemForm3').keydown(function(event){
+      if(event.keyCode == 13) {
+        event.preventDefault();
+        return false;
+      }
+    });
+    $('.dataTables-example').DataTable({
+      language: {
+        "lengthMenu": "Mostrar _MENU_ items por página",
+        "zeroRecords": "No se encontraron resultados",
+        "info": "Mostrando página _PAGE_ de _PAGES_",
+        "infoEmpty": "No hay información para mostrar",
+        "infoFiltered": "(filtrado de _MAX_ items)",
+        "search": "Buscar",
+        "paginate": {
+            "first":      "Primero",
+            "last":       "Último",
+            "next":       "Siguiente",
+            "previous":   "Anterior"
+        },
+      },
+      pageLength: 25,
+      responsive: true,
+      dom: '<"html5buttons"B>lTfgitp',
+      buttons: [
+          { extend: 'copy'},
+          {extend: 'csv'},
+          {extend: 'excel', title: 'Inventario'},
+          {extend: 'pdf', title: 'Inventario'},
+
+          {extend: 'print',
+           customize: function (win){
+                  $(win.document.body).addClass('white-bg');
+                  $(win.document.body).css('font-size', '10px');
+
+                  $(win.document.body).find('table')
+                          .addClass('compact')
+                          .css('font-size', 'inherit');
+                        }
+          }
+      ]
+    });
+    var date = new Date();
+    var d = date.getDate();
+    var m = date.getMonth();
+    var y = date.getFullYear();
+
+    cal = $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            right: ''
+        },
+        editable: true,
+        selectable: true,
+        eventRender: function(eventObj, $el) {
+
+          $el.popover({
+            title: eventObj.title,
+            content: eventObj.description,
+            trigger: 'hover',
+            placement: 'top',
+            container: 'body'
+          })
+        }
+    });
+  })
+  let autocomplete_data = {
+    courses: [], teachers: [], classrooms: [], coordinators: []
+  }
+  {{#each courses}}
+    autocomplete_data.courses.push({
+      course_id: "{{_id}}",
+      name: "{{name}}",
+      code: "{{code}}"
+    })
+  {{/each}}
+  {{#each teachers}}
+    autocomplete_data.teachers.push({
+      teacher_id: "{{_id}}",
+      name: "{{first_name}} {{last_name}}",
+      code: "{{code}}"
+    })
+  {{/each}}
+  {{#each coordinators}}
+    autocomplete_data.coordinators.push({
+      coordinator_id: "{{_id}}",
+      name: "{{first_name}} {{last_name}}",
+      code: "{{code}}"
+    })
+  {{/each}}
+  {{#each classrooms}}
+    autocomplete_data.classrooms.push({
+      classroom_id: "{{_id}}",
+      code: "{{code}}",
+      location: "{{location}}",
+      capacity: "{{capacity}}"
+    })
+  {{/each}}
+  var $input = $("#coursesAuto");
+  $input.typeahead({
+    source: autocomplete_data.courses
+  });
+  var $input_2 = $("#teachersAuto");
+  $input_2.typeahead({
+    source: autocomplete_data.teachers
+  });
+  var $input_3 = $("#coordinatorsAuto");
+  $input_3.typeahead({
+    source: autocomplete_data.coordinators
+  });
+  $input.change(function() {
+    var current = $input.typeahead("getActive");
+    if (current) {
+      if (current.name == $input.val()) {
+        selected_course = current.course_id
+        selected_name = current.name
+      } else {
+        selected_name = ""
+        selected_course = ""
+      }
+    } else {
+      selected_name = ""
+      selected_course = ""
+    }
+  })
+  $input_2.change(function() {
+    var current = $input_2.typeahead("getActive");
+    if (current) {
+      if (current.name == $input_2.val()) {
+        selected_teacher = current.teacher_id
+        selected_teacher_name = current.name
+      } else {
+        selected_teacher_name = ""
+        selected_teacher = ""
+      }
+    } else {
+      selected_teacher_name = ""
+      selected_teacher = ""
+    }
+  })
+  $input_3.change(function() {
+    var current = $input_3.typeahead("getActive");
+    if (current) {
+      if (current.name == $input_3.val()) {
+        selected_coordinator = current.coordinator_id
+        selected_coordinator_name = current.name
+      } else {
+        selected_coordinator_name = ""
+        selected_coordinator = ""
+      }
+    } else {
+      selected_coordinator_name = ""
+      selected_coordinator = ""
+    }
+  })
+  /*
+  let activity_data = []
+  {{#each courses}}
+    let details_{{id}} = {
+      course_id: "{{id}}",
+      code: "{{code}}",
+      name: "{{name}}",
+      schedules: []
+    }
+    {{#each schedules}}
+      details_{{../id}}.schedules.push({
+        admission_date: "{{admission_date}}",
+        dispatch_date: "{{dispatch_date}}",
+        due_date: "{{due_date}}",
+        amount: "{{amount}}",
+        warehouse: "{{warehouse}}"
+      })
+    {{/each}}
+    activity_data.push(details_{{id}})
+  {{/each}}
+  const detail_btns = document.getElementsByClassName('open_detail')
+  for (var i = 0; i < detail_btns.length; i++) {
+    setOnClick(i)
+  }
+  function setOnClick(index) {
+    const detail_btn = document.getElementById('open_detail_' + index)
+    detail_btn.onclick = function() {
+      const activity_parent = document.getElementById('activity_parent')
+      console.log(activity_data[index].name);
+      document.getElementById('details_code').innerHTML = activity_data[index].internal_code + " - " + activity_data[index].name
+      document.getElementById('details_description').innerHTML = activity_data[index].description
+      while (activity_parent.firstChild) {
+        activity_parent.removeChild(activity_parent.firstChild);
+      }
+      for (var i = 0; i < activity_data[index].activity.length; i++) {
+        let activity_item = document.createElement('tr')
+        activity_item.className = '.row'
+        let ind = document.createElement('td')
+        let cant = document.createElement('td')
+        let admission_date = document.createElement('td')
+        let dispatch_date = document.createElement('td')
+        let due_date = document.createElement('td')
+        let warehouse = document.createElement('td')
+
+        let date_1 = new Date(activity_data[index].activity[i].admission_date)
+        let date_2 = new Date(activity_data[index].activity[i].due_date)
+
+        ind.innerHTML = i + 1
+        cant.innerHTML = activity_data[index].activity[i].amount
+        if (activity_data[index].activity[i].admission_date) admission_date.innerHTML = date_1.toLocaleDateString("es")
+        else admission_date.innerHTML = " - "
+        if (activity_data[index].activity[i].due_date) due_date.innerHTML = date_2.toLocaleDateString("es")
+        else due_date.innerHTML = " - "
+        warehouse.innerHTML = activity_data[index].activity[i].warehouse
+        activity_item.appendChild(ind)
+        activity_item.appendChild(cant)
+        activity_item.appendChild(admission_date)
+        //activity_item.appendChild(dispatch_date)
+        activity_item.appendChild(due_date)
+        activity_item.appendChild(warehouse)
+        activity_parent.appendChild(activity_item)
+      }
+    }
+  }*/
+</script>

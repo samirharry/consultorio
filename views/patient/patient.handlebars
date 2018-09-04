@@ -1,0 +1,86 @@
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div id="step_1" class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h5>Nuevo Paciente</h5>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 b-r">
+                                            <h2>Datos Personales</h2>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Nombres: </label> {{pacienteDB.nombres}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Apellidos</label> {{pacienteDB.apellidos}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>DNI</label> {{pacienteDB.dni}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Edad: </label> {{pacienteDB.edad}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Genero</label> {{pacienteDB.genero}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Fecha de nacimiento</label> {{formatDate pacienteDB.fechaDeNacimiento 'DD-MMM-YYYY'}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Lugar de Nacimiento: </label> {{pacienteDB.lugarDeNacimiento}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Grado de Instrucción</label> {{pacienteDB.gradoDeInstrucion}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Ocupación</label> {{pacienteDB.ocupacion}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Campo Laboral: </label> {{pacienteDB.campoLaboral}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Estado Civil: </label> {{pacienteDB.estadoCivil}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Cantidad de Hijos: </label> {{pacienteDB.cantHijos}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Cantidad de Hermanos: </label> {{pacienteDB.cantHermanos}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Telefono: </label> {{pacienteDB.telefono}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+</script>
