@@ -2,7 +2,7 @@
   <div class="box">
     <div class="box-body">
       <section class="content-header">
-        <h1>Cursos</h1>
+        <h1>Consultas</h1>
       </section>
       <section class="content">
         <div class="row">
@@ -24,7 +24,7 @@
                         {{#each consultas}}
                           <tr>
                             <td>{{sum @index 1}}</td>
-                              <td>{{formatDate consulta.fecha 'DD-MMM-YYYY'}}</td>
+                              <td><a  href="../consultDetail/{{consulta._id}}">{{formatDate consulta.fecha 'DD-MMM-YYYY'}}</a></td>
                               <td>{{consulta.motivoConsulta}}</td>
                               <td>{{consulta.resumen}}</td>
                             </tr>

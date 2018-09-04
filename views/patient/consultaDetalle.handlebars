@@ -1,0 +1,140 @@
+<section class="content">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="box box-primary">
+                <div class="box-body">
+                    <div id="step_1" class="ibox float-e-margins">
+                        <div class="ibox-title">
+                            <h2>Consulta</h2>
+                            <div class="ibox-tools">
+                                <a class="collapse-link">
+                                    <i class="fa fa-chevron-up"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="ibox-content">
+                            <div class="tab-content">
+                                <div id="tab-1" class="tab-pane active">
+                                    <div class="panel-body">
+                                        <div class="col-sm-12 b-r">
+                                            <h1>Datos Personales</h1>
+                                            <div class="row">
+                                                <label>Paciente</label>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Nombres: </label> {{consultDB.paciente.nombres}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Apellidos</label> {{consultDB.paciente.apellidos}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>FECHA</label> {{formatDate consultDB.fecha 'DD-MMM-YYYY'}}
+                                                </div>
+                                            </div>
+                                            <h3>Psicologo</h3>
+                                             <div class="row">
+                                                <div class="col-md-5 form-group">
+                                                    <label>Nombres: </label> {{consultDB.doctor.first_name}}
+                                                </div>
+                                                <div class="col-md-5 form-group">
+                                                    <label>Apellidos: </label> {{consultDB.doctor.last_name}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Motivo de la consulta: </label> {{consultDB.motivoConsulta}}
+                                                </div>
+                                            </div>
+                                            <h4>Observaciones y examenes Clínicos</h4>
+                                            <div class = "row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Aspecto General: </label> {{consultDB.observYExamClinico.aspectoGeneral}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Actitud hacia el examinador: </label> {{consultDB.observYExamClinico.actitudHaciaExaminador}}
+                                                </div>
+                                            </div>
+                                            <h5>Examenes de Procesos Cognitivos</h5>
+                                            <div class = "row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Conciencia y orientación: </label> {{consultDB.observYExamClinico.examProceCognit.concYOrientac}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Percepcion: </label> {{consultDB.observYExamClinico.examProceCognit.percepcion}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Atención: </label> {{consultDB.observYExamClinico.examProceCognit.atencion}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Memoria: </label> {{consultDB.observYExamClinico.examProceCognit.memoria}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Pensamiento: </label> {{consultDB.observYExamClinico.examProceCognit.pensamiento}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Lenguaje: </label> {{consultDB.observYExamClinico.examProceCognit.lenguaje}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Inteligencia Emocional: </label> {{consultDB.observYExamClinico.examProceCognit.inteligEmocional}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Explotacion de la esfera afectiva: </label> {{consultDB.exploEsferAfect}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Observaciones: </label> {{consultDB.observaciones}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Dinamica Familiar: </label> {{consultDB.dinamicaFamiliar}}
+                                                </div>
+                                            </div>
+                                            {{#if consultDB.Pruebas.length}}
+                                            <h3>Pruebas</h3>
+                                            {{/if}}
+                                            <div class="row">
+                                                {{#each consultDB.Pruebas}}
+                                                <div class="col-md-5 form-group">
+                                                    <label>Tipo: </label> {{tipo}}
+                                                </div>
+                                                <div class="col-md-5 form-group">
+                                                    <label>Resultado: </label> {{resultado}}
+                                                </div>
+                                                {{/each}}
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Resumen del Diagnostico: </label> {{consultDB.resumen}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Pronostico: </label> {{consultDB.pronostico}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>Tratamiento Psicologico: </label> {{consultDB.tratamientoPsico}}
+                                                </div>
+                                            </div>
+                                            <div class="row">
+                                                <div class="col-md-4 form-group">
+                                                    <label>Labor Realizada: </label> {{consultDB.laborRealiz}}
+                                                </div>
+                                                <div class="col-md-4 form-group">
+                                                    <label>logros Alcanzados: </label> {{consultDB.logrosAlcan}}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+</script>

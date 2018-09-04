@@ -294,7 +294,7 @@ function newConsults(req,res){
     else{
       res.render('users/newConsult', {
         menu: true,
-        service: 'users',
+        service: 'consulta',
         page: 'newConsult',
         name: req.user.first_name,
         type: req.user.level,
@@ -436,8 +436,39 @@ function getPatient(req,res){
     )
 }
 function getConsultDetail (req,res){
-  let consID = re.params.consultID;
+  let consID = req.params.consultID;
   Consult.findById(consID)
+  .populate({
+    path: 'paciente',
+    model: 'patient'
+  })
+  .populate({
+    path: 'doctor',
+    model: 'user'
+  })
+  .exec((err,consultDB)=>{
+    if(err){
+      return res.status(500).json({
+        ok: false,
+        err
+      })
+    }
+    else if(!consultDB){
+      return res.status(400).json({
+        ok: false,
+        err
+      })
+    }
+    else {
+      res.render('patient/consultaDetalle', {
+        menu:true,
+        name: req.user.first_name,
+        type: req.user.level,
+        consultDB
+      })
+    }
+    }
+  )
 }
 
 function deletePatient(req,res){

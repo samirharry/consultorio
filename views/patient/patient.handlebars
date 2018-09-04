@@ -5,7 +5,7 @@
                 <div class="box-body">
                     <div id="step_1" class="ibox float-e-margins">
                         <div class="ibox-title">
-                            <h5>Nuevo Paciente</h5>
+                            <h5>Paciente</h5>
                             <div class="ibox-tools">
                                 <a class="collapse-link">
                                     <i class="fa fa-chevron-up"></i>
@@ -70,6 +70,126 @@
                                                     <label>Telefono: </label> {{pacienteDB.telefono}}
                                                 </div>
                                             </div>
+                                            {{#if pacienteDB.pareja}}
+                                                <h4>Pareja</h4>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Nombre: </label> {{pacienteDB.pareja.nombre}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Edad: </label> {{pacienteDB.pareja.edad}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Ocupación: </label> {{pacienteDB.pareja.ocupacion}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Lugar de Nacimiento: </label> {{pacienteDB.pareja.lugarDeNacimiento}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Fecha de Nacimiento: </label> {{formatDate pacienteDB.pareja.fechaDeNacimiento 'DD-MMM-YYYY'}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>DNI: </label> {{pacienteDB.pareja.dni}}
+                                                    </div>
+                                                </div>
+                                            {{/if}}
+                                            {{#if pacientedDB.hijos.length}}
+                                            <h3>Hijos</h3>
+                                            {{/if}}
+                                            {{#each pacienteDB.hijos}}
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Nombre: </label> {{nombres}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Edad: </label> {{edad}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Ocupación: </label> {{ocupacion}}
+                                                    </div>
+                                                </div>
+                                            {{/each}}
+                                            <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Domicilio: </label> {{pacienteDB.pareja.lugarDeNacimiento}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Religión: </label> {{formatDate pacienteDB.pareja.fechaDeNacimiento 'DD-MMM-YYYY'}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Informante: </label> {{pacienteDB.pareja.dni}}
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
+                                                    <div class="col-md-5 form-group">
+                                                        <label>Diagnostico Presuntivo: </label> {{pacienteDB.dxPresuntivo}}
+                                                    </div>
+                                                    <div class="col-md-5 form-group">
+                                                        <label>Diagnostico Definitvo: </label> {{pacienteDB.dxDefinitivo}}
+                                                    </div>
+                                                </div>
+                                                <h3>Padre</h3>
+                                                <div class = "row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Nombre: </label> {{pacienteDB.padre.nombre}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Edad: </label> {{pacienteDB.padre.edad}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Ocupación: </label> {{ pacienteDB.padre.ocupacion }}
+                                                    </div>
+                                                </div>
+                                                <h3>Madre</h3>
+                                                <div class = "row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Nombre: </label> {{pacienteDB.madre.nombre}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Edad: </label> {{pacienteDB.madre.edad}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Ocupación: </label> {{pacienteDB.madre.ocupacion}}
+                                                    </div>
+                                                </div>
+                                                {{#if pacientedDB.hermanos.length}}
+                                            <h3>Hermanos</h3>
+                                            {{/if}}
+                                            {{#each pacienteDB.hermanos}}
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Nombre: </label> {{nombre}}
+                                                    </div>
+                                                </div>
+                                            {{/each}}
+                                            <h3>Histria Personal</h3>
+                                            <h4>Desarrollo Pre y Post Natal</h4>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Desarrollo Pre Natal: </label> {{pacienteDB.historiaPersonal.desarrPreYPostNatal.descPreNat}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Desarrollo Post Natal: </label> {{pacienteDB.historiaPersonal.desarrPreYPostNatal.descPostnatal}}
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Escolaridad: </label> {{pacienteDB.historiaPersonal.escolaridad}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Habitos e Intereses: </label> {{pacienteDB.historiaPersonal.habitosEIntereses}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Desarrollo Psicosexual: </label> {{pacienteDB.historiaPersonal.desarrPsicosexual}}
+                                                    </div>
+                                                    <div class="col-md-4 form-group">
+                                                        <label>Historia Medica: </label> {{pacienteDB.historiaPersonal.historiaMedica}}
+                                                    </div>
+                                                </div>
                                         </div>
                                     </div>
                                 </div>

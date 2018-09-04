@@ -400,22 +400,22 @@
           ubigeo_province = document.getElementById('select_province').value.split('|')[1]
           ubigeo_district = document.getElementById('select_district').value.split('|')[1]
           if (parseInt(document.getElementById('select_department').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code += document.getElementById('select_department').value.split('|')[0]
+          ubigeo_code += ' ' + document.getElementById('select_department').value.split('|')[0]
           if (parseInt(document.getElementById('select_province').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code += document.getElementById('select_province').value.split('|')[0]
+          ubigeo_code += ' ' + document.getElementById('select_province').value.split('|')[0]
           if (parseInt(document.getElementById('select_district').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code += document.getElementById('select_district').value.split('|')[0]
+          ubigeo_code += ' '+ document.getElementById('select_district').value.split('|')[0]
         }
         if (document.getElementById('select_depart_spouse').value != "") {
           ubigeo_department_spouse = document.getElementById('select_depart_spouse').value.split('|')[1]
           ubigeo_province_spouse = document.getElementById('select_province_spouse').value.split('|')[1]
           ubigeo_district_spouse = document.getElementById('select_district_spouse').value.split('|')[1]
           if (parseInt(document.getElementById('select_depart_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code_spouse += document.getElementById('select_depart_spouse').value.split('|')[0]
+          ubigeo_code_spouse += ' ' + document.getElementById('select_depart_spouse').value.split('|')[0]
           if (parseInt(document.getElementById('select_province_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code_spouse += document.getElementById('select_province_spouse').value.split('|')[0]
+          ubigeo_code_spouse += ' ' + document.getElementById('select_province_spouse').value.split('|')[0]
           if (parseInt(document.getElementById('select_district_spouse').value.split('|')[0]) < 10) ubigeo_code += '0'
-          ubigeo_code_spouse += document.getElementById('select_district_spouse').value.split('|')[0]
+          ubigeo_code_spouse += ' ' + document.getElementById('select_district_spouse').value.split('|')[0]
         }
         let str1 = $('#newPatientFormStep1').serialize();
         let str2 = $('#newPatientFormStep2').serialize();
